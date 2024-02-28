@@ -83,8 +83,20 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    
+    // base case
+    if (head == nullptr) return nullptr;
 
-
+    // recursive step
+    Node* next = llfilter(head->next, pred);
+    if (pred(head->val)) {
+        delete head;
+        return next;
+    }
+    else {
+        head->next = next;
+        return head;
+    }
 }
 
 #endif
